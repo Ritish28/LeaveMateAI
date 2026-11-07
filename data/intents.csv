@@ -1,0 +1,217 @@
+text,intent
+Meri attendance galat mark hui hai RMS raise karna hai,create_rms
+I want to raise an RMS request,create_rms
+Mujhe RMS request banani hai,create_rms
+My attendance is marked wrong please raise a request,create_rms
+Attendance mein galti hai RMS lagana hai,create_rms
+I need to submit an RMS for my wrong attendance,create_rms
+Mere marks galat aaye hain RMS daalna hai,create_rms
+UMS portal login nahi ho raha RMS banana hai,create_rms
+Create a new request for my timetable issue,create_rms
+Mera fee payment show nahi ho raha request raise karo,create_rms
+I want to report a technical problem on UMS,create_rms
+Mujhe bonafide certificate ke liye request daalni hai,create_rms
+Please raise a request for attendance correction,create_rms
+Class mein present tha par absent lagi hai RMS karna hai,create_rms
+New RMS request submit karni hai,create_rms
+I want to apply for leave tomorrow,apply_leave
+Mujhe kal ki chhutti chahiye,apply_leave
+Leave apply karni hai,apply_leave
+I need leave for 3 days due to fever,apply_leave
+Mujhe bukhar hai 2 din ki leave lagani hai,apply_leave
+Please apply medical leave for me,apply_leave
+Main parso se shaadi ke liye leave lena chahta hoon,apply_leave
+I am not well so I want to take leave,apply_leave
+Mujhe ghar jaana hai emergency hai leave chahiye,apply_leave
+Apply leave from Monday to Wednesday,apply_leave
+Kal college nahi aa paunga leave de do,apply_leave
+I need a day off next Friday,apply_leave
+Meri tabiyat kharab hai chhutti apply karo,apply_leave
+Request leave for family function,apply_leave
+Mujhe 5 din ki leave lena hai,apply_leave
+Check my RMS status,check_status
+Meri request ka status batao,check_status
+What is the status of my leave,check_status
+Mera RMS approve hua ya nahi,check_status
+Status of request number 5,check_status
+Meri leave ka kya hua,check_status
+Has my request been approved,check_status
+Request abhi tak pending hai kya,check_status
+Track my request,check_status
+Mere RMS ka update kya hai,check_status
+Is my leave approved yet,check_status
+Request ID 3 ka status dikhao,check_status
+Kya meri request reject ho gayi,check_status
+Tell me the progress of my application,check_status
+Mera case abhi kis stage par hai,check_status
+Show my previous requests,view_history
+Meri pichli saari requests dikhao,view_history
+List all my RMS requests,view_history
+Meri purani leaves dikhao,view_history
+I want to see my request history,view_history
+Mere saare applications dikhao,view_history
+Show all my leave applications,view_history
+Ab tak maine kitni requests ki hain,view_history
+Display my past requests,view_history
+Meri request history batao,view_history
+Give me a list of my submitted requests,view_history
+Pehle ki saari leaves dikhao,view_history
+View all my applications,view_history
+Maine kya kya request daali hain dikhao,view_history
+My old RMS records please,view_history
+I want to cancel my pending request,cancel_request
+Meri pending request cancel kar do,cancel_request
+Cancel my leave application,cancel_request
+Mujhe apni leave cancel karni hai,cancel_request
+Please withdraw my RMS request,cancel_request
+Request number 4 cancel karo,cancel_request
+Delete my pending leave,cancel_request
+Meri request wapas le lo,cancel_request
+I changed my mind cancel the request,cancel_request
+Leave cancel karni hai ab zaroorat nahi,cancel_request
+Cancel request ID 2,cancel_request
+Mujhe RMS withdraw karna hai,cancel_request
+Please remove my last request,cancel_request
+Meri application cancel kar dijiye,cancel_request
+Stop my pending leave request,cancel_request
+How do I raise an RMS request,ask_process
+RMS kaise raise karte hain,ask_process
+What documents are needed for medical leave,ask_process
+Leave ke liye kaunse documents chahiye,ask_process
+How long does RMS take to get approved,ask_process
+RMS approve hone mein kitna time lagta hai,ask_process
+What is the maximum number of leave days allowed,ask_process
+Ek baar mein kitni din ki leave mil sakti hai,ask_process
+Can I apply leave for a past date,ask_process
+Kya main purani date ki leave le sakta hoon,ask_process
+What are the types of RMS categories,ask_process
+RMS ki kitni categories hoti hain,ask_process
+Explain the leave process to me,ask_process
+Leave lene ka process kya hai,ask_process
+Who approves my RMS request,ask_process
+Hello,other
+Hi there,other
+Namaste,other
+Thank you so much,other
+Shukriya,other
+Good morning,other
+Bye,other
+Kya haal hai,other
+Who are you,other
+Tum kya kar sakte ho,other
+Ok thanks,other
+Theek hai,other
+What is the weather today,other
+Tell me a joke,other
+Aaj khana kya bana hai,other
+Attendance correct karwani hai RMS dalna hai,create_rms
+Raise a request for my wrong marks,create_rms
+My ID card is not issued I need to raise a request,create_rms
+Mere subject ka result galat show ho raha hai request banao,create_rms
+Submit a request for fee receipt issue,create_rms
+Hostel allotment ke liye RMS raise karna hai,create_rms
+I want to file an RMS about my missing attendance,create_rms
+Course registration mein problem hai request daalni hai,create_rms
+Mujhe NOC ke liye request submit karni hai,create_rms
+Timetable mein clash hai RMS banana hai,create_rms
+Please create an RMS for my backlog exam issue,create_rms
+UMS par assignment upload nahi ho raha request raise karo,create_rms
+Mujhe transcript chahiye uske liye RMS daalna hai,create_rms
+Lab attendance zero dikh rahi hai RMS karna hai,create_rms
+I want to report wrong internal marks through RMS,create_rms
+I want to take leave from tomorrow,apply_leave
+Kal se 3 din ki chhutti chahiye,apply_leave
+Apply sick leave for two days,apply_leave
+Mujhe leave chahiye kyunki ghar mein function hai,apply_leave
+Need leave next Monday for a family emergency,apply_leave
+Meri behen ki shaadi hai leave apply kar do,apply_leave
+I will be absent tomorrow please apply leave for me,apply_leave
+Mujhe aaj se leave leni hai,apply_leave
+Apply leave for 12 November to 14 November,apply_leave
+Doctor ke paas jaana hai kal ki leave lagao,apply_leave
+I want to apply for personal leave,apply_leave
+Mera accident ho gaya hai leave chahiye,apply_leave
+Leave lagani hai kal ke liye,apply_leave
+I have a hackathon tomorrow I need academic leave,apply_leave
+Mujhe parso ek din ki chhutti lena hai,apply_leave
+What is the status of my RMS,check_status
+Meri leave approve hui kya,check_status
+Check status of request 7,check_status
+Mera RMS ka kya hua,check_status
+Is my request still pending,check_status
+Meri application ka status batao,check_status
+Request number 2 ka update do,check_status
+Has my leave been rejected,check_status
+Mujhe apni request ka progress dekhna hai,check_status
+Any update on my RMS,check_status
+Mera RMS abhi tak close hua ya nahi,check_status
+Show me the status of my latest leave,check_status
+Meri latest request ka status kya hai,check_status
+Where is my request right now,check_status
+Kya meri leave sanction ho gayi,check_status
+Show me all the requests I have made,view_history
+Meri saari RMS requests ki list do,view_history
+Display my leave history,view_history
+Mere purane applications dikhao,view_history
+List my previous leaves,view_history
+Maine ab tak kitni leaves li hain dikhao,view_history
+Give me my complete request history,view_history
+Meri submit ki hui sab requests batao,view_history
+Show my past RMS,view_history
+Pichli requests ka record dikhao,view_history
+I want to view all my old requests,view_history
+Mere saare RMS ki history dikhao,view_history
+Show everything I have submitted so far,view_history
+Meri leaves ki puri list chahiye,view_history
+Previous applications dikhao,view_history
+Cancel my RMS request,cancel_request
+Meri leave cancel kar do,cancel_request
+I do not need my pending request anymore cancel it,cancel_request
+Request ID 6 ko cancel karna hai,cancel_request
+Withdraw my leave application,cancel_request
+Meri pending RMS hata do,cancel_request
+Please cancel the request I made yesterday,cancel_request
+Maine galti se request daal di cancel karo,cancel_request
+Cancel leave number 3,cancel_request
+Mujhe apni last request wapas leni hai,cancel_request
+I want to delete my RMS,cancel_request
+Leave request cancel kar dijiye,cancel_request
+Revoke my pending application,cancel_request
+Ab leave nahi chahiye cancel kar do,cancel_request
+Cancel my last leave,cancel_request
+How can I apply for leave,ask_process
+Leave kaise apply karte hain,ask_process
+What is the process to raise an RMS,ask_process
+RMS banane ka process kya hai,ask_process
+How many days does leave approval take,ask_process
+Leave approve hone mein kitne din lagte hain,ask_process
+What are the rules for taking leave,ask_process
+Leave ke rules kya hain,ask_process
+Is a medical certificate required for leave,ask_process
+Kya leave ke liye certificate dena padta hai,ask_process
+Can I cancel an RMS after submitting it,ask_process
+Kya RMS submit karne ke baad cancel kar sakte hain,ask_process
+What happens if my RMS is rejected,ask_process
+Agar RMS reject ho jaye to kya hota hai,ask_process
+Which category should I choose for wrong attendance,ask_process
+Hey,other
+Good evening,other
+Kaise ho,other
+Thanks a lot,other
+Bahut dhanyavaad,other
+Good night,other
+What can you do,other
+Tum kaun ho,other
+See you later,other
+Alvida,other
+Who made you,other
+Cricket ka score kya hai,other
+Recommend a good movie,other
+Mausam kaisa hai,other
+How are you,other
+Ek aur leave daal do,apply_leave
+Leave dalde,apply_leave
+Ek aur leave lagani hai,apply_leave
+Mujhe ek aur leave chahiye,apply_leave
+Ek aur request daal do,create_rms
+RMS dalde,create_rms
