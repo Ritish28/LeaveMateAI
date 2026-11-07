@@ -46,6 +46,13 @@ The database is created automatically on first run.
 - Metrics: accuracy, precision, recall, F1, confusion matrix (see `models/`)
 - These are classifier metrics only. They are not end-to-end agent performance.
 
+## Testing results
+- Intent routing sanity check (20 unseen messages): 19/20 correct. The one miss was a casual English greeting.
+- Agent flows and security (22 automated tests, LLM disabled so fallback mode is exercised): 22/22 passed.
+- Covered: confirmation required before save, duplicate and overlap blocking, past-date and 7-day-limit rejection, ownership checks, invalid input rejection, SQL-injection-style text.
+- Run with: `python -m tests.test_e2e` (uses a temporary database, your real data is untouched).
+- Results table: `tests/e2e_results.csv`
+- The 20-message routing check is a sanity check, not a benchmark. The main classifier metric is the 5-fold cross-validation accuracy above.
 ## Limitations
 - Small dataset; results are indicative only
 - Leave rules are demo rules, not real university rules

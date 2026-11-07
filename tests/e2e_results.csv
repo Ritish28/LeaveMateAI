@@ -1,0 +1,63 @@
+part,test,result,detail
+A,mujhe apni attendance theek karwani hai RMS karo,PASS,expected=create_rms got=create_rms conf=0.689
+A,Hostel ke liye request raise karni hai,PASS,expected=create_rms got=create_rms conf=0.892
+A,My attendance was marked absent by mistake,PASS,expected=create_rms got=create_rms conf=0.689
+A,I want to take a sick leave from tomorrow,PASS,expected=apply_leave got=apply_leave conf=0.928
+A,Kal mujhe college nahi aana leave laga do,PASS,expected=apply_leave got=apply_leave conf=0.897
+A,Mujhe bukhar hai kal ki chhutti lagani hai,PASS,expected=apply_leave got=apply_leave conf=0.948
+A,Meri leave ka status kya hai,PASS,expected=check_status got=check_status conf=0.976
+A,Mera RMS approve hua kya,PASS,expected=check_status got=check_status conf=0.9
+A,Is my request approved,PASS,expected=check_status got=check_status conf=0.948
+A,Show me my submitted leaves,PASS,expected=view_history got=view_history conf=0.895
+A,Meri sab requests ek saath dikhao,PASS,expected=view_history got=view_history conf=0.951
+A,Request history dikhao,PASS,expected=view_history got=view_history conf=0.982
+A,Please cancel my pending leave,PASS,expected=cancel_request got=cancel_request conf=0.991
+A,Meri RMS request cancel kar do please,PASS,expected=cancel_request got=cancel_request conf=0.971
+A,How long does leave approval take,PASS,expected=ask_process got=ask_process conf=0.902
+A,RMS kitne din me approve hota hai,PASS,expected=ask_process got=ask_process conf=0.828
+A,What documents do I need for RMS,PASS,expected=ask_process got=ask_process conf=0.825
+A,"Hi, how is it going",FAIL,expected=other got=ask_process conf=0.496
+A,Dhanyavaad,PASS,expected=other got=other conf=0.821
+A,Who won the cricket match yesterday,PASS,expected=other got=other conf=0.675
+B,RMS: summary dikhti hai,PASS,"Ye RMS request ready hai:
+- Category: Attendance Issue
+- Subject: Meri attendance galat mark hui hai
+- Description: Meri attendance galat mark hui hai
+
+**Submit kar du? (haan / nahi)**"
+B,RMS: haan par save hota hai,PASS,RMS request submit ho gayi. ID: 1
+B,RMS: duplicate block hota hai,PASS,Submit nahi hui: Ye request pehle se Pending hai (ID: 1).
+B,RMS: category missing to poochta hai,PASS,"Ye kis type ki problem hai? Options: Attendance Issue, Academic Issue, Technical Problem, Administrative Request"
+B,RMS: phir description poochta hai,PASS,"Problem detail me batao (kab, kya galat hua). Kam se kam ek poori line likho."
+B,RMS: sab milne par summary,PASS,"Ye RMS request ready hai:
+- Category: Technical Problem
+- Subject: UMS portal pe login nahi ho raha hai
+- Description: UMS portal pe login nahi ho raha hai
+
+**Submit kar du? (haan / nahi)**"
+B,RMS: nahi bolne par save nahi hota,PASS,
+B,RMS: haan/nahi ke bina save nahi hota,PASS,Kripya sirf **haan** ya **nahi** likho.
+B,Leave: summary dikhti hai,PASS,"Ye leave application ready hai:
+- Type: Medical
+- From: 2026-11-09
+- To: 2026-11-10
+- Reason: Kal se 2 din ki leave chahiye, bukhar hai
+
+Sab rules pass. Total 2 din.
+**Submit kar du? (haan / nahi)**"
+B,Leave: haan par save hota hai,PASS,Leave application submit ho gayi. ID: 1
+B,Leave: overlap block hota hai,PASS,"Problem: In dates par pehle se Pending leave hai (ID 1: 2026-11-09 se 2026-11-10).
+Sahi details dobara bhejo."
+B,Leave: past date reject hoti hai,PASS,"Problem: Start date past me nahi ho sakti.
+Sahi details dobara bhejo."
+B,Leave: 7 din se zyada reject hoti hai,PASS,"Problem: Ek application me max 7 din ki leave mil sakti hai. Tumne 10 din maange.
+Sahi details dobara bhejo."
+B,Leave: reject par kuch save nahi hua,PASS,
+B,Leave: type missing to poochta hai,PASS,"Kaunsi type ki leave chahiye? Options: Medical, Personal, Family Emergency, Academic Event"
+C,Ownership: doosre student ko status nahi dikhta,PASS,
+C,Ownership: doosra student cancel nahi kar sakta,PASS,
+C,Owner apni Pending request cancel kar sakta hai,PASS,
+C,Cancelled request dobara cancel nahi hoti,PASS,
+C,Galat category reject hoti hai,PASS,
+C,Chhota description reject hota hai,PASS,
+C,SQL injection jaisa text table nahi todta,PASS,
