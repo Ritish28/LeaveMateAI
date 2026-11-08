@@ -7,6 +7,7 @@ DB_PATH = Path(__file__).resolve().parent.parent / "database" / "leavemate.db"
 
 def get_connection():
     """Database se connection kholta hai."""
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)  # folder na ho to bana do
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row  # rows ko naam se access kar sakte hain
     conn.execute("PRAGMA foreign_keys = ON")
