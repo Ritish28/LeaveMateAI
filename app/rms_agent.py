@@ -1,9 +1,9 @@
 import re
-from app.fallback import fallback_rms
 from typing import TypedDict
 
 from langgraph.graph import END, StateGraph
 
+from app.fallback import fallback_rms
 from app.llm import ask_llm_json
 from app.rms_tools import CATEGORIES, create_rms_request
 
@@ -20,6 +20,37 @@ class RmsState(TypedDict):
     details: dict
     stage: str
     reply: str
+
+
+def make_subject(text, limit=60):
+    """Shabd ke beech me kate bina subject banata hai."""
+    text = text.strip()
+    if len(text) <= limit:
+        return text
+    return text[:limit].rsplit(" ", 1)[0] + "..."
+
+
+def polish(details):
+    """Subject aur description ko formal English me likhta hai. LLM fail ho to original rakhta hai."""
+    original = details["description"]
+    prompt = f"""Ek student ki RMS request hai. Category: {details['category']}.
+Student ka message (Hinglish ho sakta hai): {original}
+Sirf JSON do: {{"subject": "...", "description": "..."}}
+subject: formal English, max 10 words.
+description: formal English, 1 se 3 sentences, sirf wahi facts jo student ne bataye.
+Koi date, naam ya detail invent mat karo."""
+    try:
+        data = ask_llm_json(prompt) or {}
+    except RuntimeError:
+        data = {}
+
+    subject = (data.get("subject") or "").strip()
+    desc = (data.get("description") or "").strip()
+    if len(subject) < 5 or len(desc) < 10:  # LLM fail ho to simple fallback
+        subject = f"{details['category']}: {make_subject(original, 40)}"
+        desc = original
+    details["subject"] = subject
+    details["description_en"] = desc
 
 
 def extract_node(state: RmsState):
@@ -67,23 +98,19 @@ Message: {message}"""
 
 
 def check_node(state: RmsState):
+    details = dict(state["details"])
     for key in FIELDS:
-        if not state["details"].get(key):
-            return {"stage": "collecting", "reply": QUESTIONS[key]}
-    return {"stage": "confirming", "reply": _summary(state["details"])}
+        if not details.get(key):
+            return {"stage": "collecting", "reply": QUESTIONS[key], "details": details}
+    if not details.get("subject"):
+        polish(details)  # sirf ek baar chalta hai
+    return {"stage": "confirming", "reply": _summary(details), "details": details}
 
-def make_subject(text, limit=60):
-    """Shabd ke beech me kate bina subject banata hai."""
-    text = text.strip()
-    if len(text) <= limit:
-        return text
-    return text[:limit].rsplit(" ", 1)[0] + "..."
-    
+
 def _summary(d):
-    subject = make_subject(d["description"])
     return (
         f"Ye RMS request ready hai:\n"
-        f"- Category: {d['category']}\n- Subject: {subject}\n- Description: {d['description']}\n\n"
+        f"- Category: {d['category']}\n- Subject: {d['subject']}\n- Description: {d['description_en']}\n\n"
         f"**Submit kar du? (haan / nahi)**"
     )
 
@@ -112,8 +139,10 @@ def run_rms_turn(student_id, message, session):
     if session.get("stage") == "confirming":
         if text in YES:
             d = session["details"]
-            subject = make_subject(d["description"])
-            result = create_rms_request(student_id, d["category"], subject, d["description"])
+            full = d["description_en"]
+            if full.strip() != d["description"].strip():
+                full += f"\n\nStudent's original message: {d['description']}"
+            result = create_rms_request(student_id, d["category"], d["subject"], full)
             session.clear()
             if result["success"]:
                 return f"RMS request submit ho gayi. ID: {result['request_id']}"

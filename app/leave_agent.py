@@ -79,20 +79,34 @@ def check_node(state: LeaveState):
             return {"stage": "collecting", "reply": QUESTIONS[key], "done": False, "asking": key}
     return {"stage": "validating", "asking": ""}
 
+def polish_reason(d):
+    """Reason ko formal English me likhta hai. LLM fail ho to original rakhta hai."""
+    prompt = f"""Ek student ki leave application hai. Leave type: {d['leave_type']}.
+Student ka reason (Hinglish ho sakta hai): {d['reason']}
+Sirf JSON do: {{"reason": "..."}}
+reason: formal English, 1 sentence, sirf wahi jo student ne bataya.
+Koi detail invent mat karo."""
+    try:
+        data = ask_llm_json(prompt) or {}
+    except RuntimeError:
+        data = {}
+    text = (data.get("reason") or "").strip()
+    return text if len(text) >= 10 else d["reason"]
+
 def validate_node(state: LeaveState):
     """Python rules check karta hai (LLM nahi)."""
-    d = state["details"]
+    d = dict(state["details"])
     result = validate_leave(state["student_id"], d["leave_type"], d["start_date"], d["end_date"], d["reason"])
     if not result["valid"]:
-        # galat date wagairah hata do taaki dobara poochh sake
         return {"reply": f"Problem: {result['message']}\nSahi details dobara bhejo.", "stage": "collecting", "done": False,
                 "details": {k: v for k, v in d.items() if k not in ("start_date", "end_date")}}
+    d["reason_en"] = polish_reason(d)
     summary = (
         f"Ye leave application ready hai:\n"
-        f"- Type: {d['leave_type']}\n- From: {d['start_date']}\n- To: {d['end_date']}\n- Reason: {d['reason']}\n\n"
+        f"- Type: {d['leave_type']}\n- From: {d['start_date']}\n- To: {d['end_date']}\n- Reason: {d['reason_en']}\n\n"
         f"{result['message']}\n**Submit kar du? (haan / nahi)**"
     )
-    return {"reply": summary, "stage": "confirming", "done": False}
+    return {"reply": summary, "stage": "confirming", "done": False, "details": d}
 
 
 def route_after_check(state: LeaveState):
@@ -129,7 +143,10 @@ def run_leave_turn(student_id, message, session):
     if session.get("stage") == "confirming":
         if text in YES:
             d = session["details"]
-            result = create_leave_application(student_id, d["leave_type"], d["start_date"], d["end_date"], d["reason"])
+            reason = d.get("reason_en", d["reason"])
+            if reason.strip() != d["reason"].strip():
+                reason += f" (Student's words: {d['reason']})"
+            result = create_leave_application(student_id, d["leave_type"], d["start_date"], d["end_date"], reason)
             session.clear()
             if result["success"]:
                 return f"Leave application submit ho gayi. ID: {result['leave_id']}"
